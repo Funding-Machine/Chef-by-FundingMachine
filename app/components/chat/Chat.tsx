@@ -102,6 +102,8 @@ export const Chat = memo(
     hadSuccessfulDeploy,
     subchats,
   }: ChatProps) => {
+    // Fetch enabled MCP servers for this user
+    const enabledMcpServers = useQuery(api.mcpServers.listEnabled);
     const convex = useConvex();
     const sessionId = useConvexSessionIdOrNullOrLoading();
     const [chatStarted, setChatStarted] = useState(initialMessages.length > 0 || (!!subchats && subchats.length > 1));
@@ -353,6 +355,20 @@ export const Chat = memo(
 
         const characterCounts = chatContextManager.current.calculatePromptCharacterCounts(preparedMessages);
 
+        // Prepare MCP servers for the agent
+        const mcpServersForAgent = enabledMcpServers && enabledMcpServers.length > 0
+          ? enabledMcpServers.map(server => ({
+              name: server.name,
+              description: server.description,
+              transport: server.transport,
+              command: server.command,
+              args: server.args,
+              env: server.env,
+              url: server.url,
+              headers: server.headers,
+            }))
+          : undefined;
+
         return {
           messages: preparedMessages,
           firstUserMessage: messages.filter((message) => message.role == 'user').length == 1,
@@ -368,6 +384,7 @@ export const Chat = memo(
           modelChoice,
           collapsedMessages,
           promptCharacterCounts: characterCounts,
+          mcpServers: mcpServersForAgent,
           featureFlags: {
             enableResend,
           },

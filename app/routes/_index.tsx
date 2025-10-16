@@ -7,8 +7,8 @@ import { Homepage } from '~/components/Homepage.client';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'Chef by Convex | Generate realtime full‑stack apps' },
-    { name: 'description', content: 'Cook up something hot with Chef, the full-stack AI coding agent from Convex' },
+    { title: 'Funding Machine AI powered by Chef | AI-Powered Business Funding Platform' },
+    { name: 'description', content: 'Funding Machine AI powered by Chef - Streamlined business lending management software with powerful AI-driven analysis' },
     {
       property: 'og:image',
       content: '/social_preview_index.png',

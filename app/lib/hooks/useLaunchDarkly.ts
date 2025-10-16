@@ -24,7 +24,7 @@ const flagDefaults: {
   minCollapsedMessagesSize: 8192,
   useGeminiAuto: false,
   notionClonePrompt: false,
-  newChatFeature: false,
+  newChatFeature: true,
   minMessagesForNudge: 40,
   enableResend: false,
   enableGpt5: false,

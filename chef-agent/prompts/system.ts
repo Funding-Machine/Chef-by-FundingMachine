@@ -9,6 +9,7 @@ import { openaiProxyGuidelines } from './openaiProxyGuidelines.js';
 import { openAi } from './openAi.js';
 import { google } from './google.js';
 import { resendProxyGuidelines } from './resendProxyGuidelines.js';
+import { mcpGuidelines } from './mcpGuidelines.js';
 
 // This is the very first part of the system prompt that tells the model what
 // role to play.
@@ -36,6 +37,7 @@ export function generalSystemPrompt(options: SystemPromptOptions) {
   ${secretsInstructions(options)}
   ${openaiProxyGuidelines(options)}
   ${resendProxyGuidelines(options)}
+  ${mcpGuidelines(options.hasMcpServers ?? false)}
   ${outputInstructions(options)}
   ${openAi(options)}
   ${google(options)}

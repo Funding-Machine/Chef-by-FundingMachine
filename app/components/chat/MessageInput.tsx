@@ -38,6 +38,7 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { ChatBubbleLeftIcon, DocumentArrowUpIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '@workos-inc/authkit-react';
 import { useConvex } from 'convex/react';
+import { McpToolsButton } from './McpToolsButton';
 
 const PROMPT_LENGTH_WARNING_THRESHOLD = 2000;
 
@@ -294,19 +295,21 @@ export const MessageInput = memo(function MessageInput({
           <div className="ml-auto flex items-center gap-1">
             {chefAuthState.kind === 'unauthenticated' && <SignInButton />}
             {chefAuthState.kind === 'fullyLoggedIn' && (
-              <MenuComponent
-                buttonProps={{
-                  variant: 'neutral',
-                  tip: 'Use a recipe',
-                  inline: true,
-                  icon: (
-                    <div className="text-lg">
-                      <SquaresPlusIcon className="size-4" />
-                    </div>
-                  ),
-                }}
-                placement="top-start"
-              >
+              <>
+                <McpToolsButton />
+                <MenuComponent
+                  buttonProps={{
+                    variant: 'neutral',
+                    tip: 'Use a recipe',
+                    inline: true,
+                    icon: (
+                      <div className="text-lg">
+                        <SquaresPlusIcon className="size-4" />
+                      </div>
+                    ),
+                  }}
+                  placement="top-start"
+                >
                 <div className="ml-3 flex items-center gap-1">
                   <h2 className="text-sm font-bold">Use a recipe</h2>
                   <Tooltip tip="Recipes are Chef prompts that add powerful full-stack features to your app." side="top">
@@ -340,6 +343,7 @@ export const MessageInput = memo(function MessageInput({
                   </div>
                 </MenuItemComponent>
               </MenuComponent>
+              </>
             )}
             {chefAuthState.kind === 'fullyLoggedIn' && (
               <EnhancePromptButton
