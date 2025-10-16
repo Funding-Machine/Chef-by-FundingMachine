@@ -26,7 +26,7 @@ export const firstMessage = internalAction({
       apiKey: process.env.OPENAI_API_KEY,
     });
     const response = await openai.chat.completions.create({
-      model: "gpt-4.1-mini",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",

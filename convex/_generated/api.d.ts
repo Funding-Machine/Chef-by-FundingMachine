@@ -20,6 +20,7 @@ import type * as dev from "../dev.js";
 import type * as http from "../http.js";
 import type * as lz4 from "../lz4.js";
 import type * as lz4Wasm from "../lz4Wasm.js";
+import type * as mcpServers from "../mcpServers.js";
 import type * as messages from "../messages.js";
 import type * as migrations from "../migrations.js";
 import type * as openaiProxy from "../openaiProxy.js";
@@ -59,6 +60,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   lz4: typeof lz4;
   lz4Wasm: typeof lz4Wasm;
+  mcpServers: typeof mcpServers;
   messages: typeof messages;
   migrations: typeof migrations;
   openaiProxy: typeof openaiProxy;

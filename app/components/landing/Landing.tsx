@@ -24,14 +24,7 @@ export default function Landing() {
         </div>
         <div className="flex flex-col gap-6 px-4 py-6 text-lg text-neutral-9 dark:text-neutral-2">
           <p>
-            Chef is open-source, check out the GitHub repo{' '}
-            <a
-              href="https://github.com/get-convex/chef"
-              className="font-semibold text-bolt-elements-button-primary-backgroundHover hover:underline dark:text-white"
-            >
-              here
-            </a>
-            .
+            Funding Machine AI powered by Chef is a streamlined business lending management software with powerful AI-driven analysis and automation.
           </p>
           <p>
             This is the only AI app builder that knows backend. By applying{' '}
@@ -43,18 +36,17 @@ export default function Landing() {
             </a>{' '}
             primitives directly to your code generation, your apps are automatically equipped with optimal backend
             patterns and best practices. Your full-stack apps come with a built-in database, zero config auth, file
-            uploads, real-time UIs, and background workflows. If you want to check out the secret sauce that powers
-            Chef, you can view or download the system prompt{' '}
+            uploads, real-time UIs, and background workflows. This platform combines the power of{' '}
             <a
-              href="https://github.com/get-convex/chef/releases/latest"
+              href="https://www.myfundingmachine.com/"
               className="font-semibold text-bolt-elements-button-primary-backgroundHover hover:underline dark:text-white"
             >
-              here
+              Funding Machine
             </a>
-            .
+            &apos;s business lending expertise with AI-powered code generation.
           </p>
           <p>
-            As mentioned above, Chef&apos;s capabilities are enabled by being built on top of{' '}
+            As mentioned above, capabilities are enabled by being built on top of{' '}
             <a
               href="https://convex.dev"
               className="font-semibold text-bolt-elements-button-primary-backgroundHover hover:underline dark:text-white"
@@ -62,11 +54,11 @@ export default function Landing() {
               Convex
             </a>
             , the open-source reactive database designed to make life easy for web app developers. The
-            &ldquo;magic&rdquo; in Chef is just the fact that it&apos;s using Convex&apos;s APIs, which are an ideal fit
+            &ldquo;magic&rdquo; is the fact that it&apos;s using Convex&apos;s APIs, which are an ideal fit
             for codegen.
           </p>
           <p>
-            Development of the Chef is led by the Convex team. We{' '}
+            Development is led by the Convex team. We{' '}
             <a
               href="https://github.com/get-convex/chef/blob/main/CONTRIBUTING.md"
               className="font-semibold text-bolt-elements-button-primary-backgroundHover hover:underline dark:text-white"

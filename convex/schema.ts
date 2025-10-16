@@ -240,4 +240,29 @@ export default defineSchema({
   })
     .index("name", ["name"])
     .index("isDone", ["isDone"]),
+
+  // MCP (Model Context Protocol) server configurations
+  mcpServers: defineTable({
+    memberId: v.id("convexMembers"),
+    name: v.string(),
+    description: v.optional(v.string()),
+    // Transport type: "stdio" for local processes, "http" for remote servers
+    transport: v.union(v.literal("stdio"), v.literal("http")),
+    // For stdio transport:
+    // The command to run the MCP server (e.g., "npx", "node", "python")
+    command: v.optional(v.string()),
+    // Arguments for the command (e.g., ["-y", "@modelcontextprotocol/server-filesystem"])
+    args: v.optional(v.array(v.string())),
+    // Environment variables for the server
+    env: v.optional(v.record(v.string(), v.string())),
+    // For HTTP transport:
+    // The URL of the MCP server (e.g., "https://mcp.example.com")
+    url: v.optional(v.string()),
+    // Optional authentication headers for HTTP transport
+    headers: v.optional(v.record(v.string(), v.string())),
+    // Whether the server is enabled
+    enabled: v.boolean(),
+  })
+    .index("byMemberId", ["memberId"])
+    .index("byMemberIdAndEnabled", ["memberId", "enabled"]),
 });

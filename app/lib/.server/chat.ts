@@ -68,6 +68,16 @@ export async function chatAction({ request }: ActionFunctionArgs) {
     recordRawPromptsForDebugging?: boolean;
     collapsedMessages: boolean;
     promptCharacterCounts?: PromptCharacterCounts;
+    mcpServers?: Array<{
+      name: string;
+      description?: string;
+      transport: 'stdio' | 'http';
+      command?: string;
+      args?: string[];
+      env?: Record<string, string>;
+      url?: string;
+      headers?: Record<string, string>;
+    }>;
     featureFlags: {
       enableResend?: boolean;
     };
@@ -189,6 +199,7 @@ export async function chatAction({ request }: ActionFunctionArgs) {
       recordRawPromptsForDebugging: !!recordRawPromptsForDebugging,
       collapsedMessages: body.collapsedMessages,
       promptCharacterCounts: body.promptCharacterCounts,
+      mcpServers: body.mcpServers,
       featureFlags: {
         enableResend: body.featureFlags.enableResend ?? false,
       },

@@ -25,6 +25,7 @@ export interface SystemPromptOptions {
   usingGoogle: boolean;
   resendProxyEnabled: boolean;
   enableResend: boolean;
+  hasMcpServers?: boolean;
 }
 
 export interface BoltArtifactData {

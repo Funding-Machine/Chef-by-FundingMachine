@@ -141,7 +141,7 @@ const ShowInner: FC<ShowInnerProps> = ({ share, className }) => {
       <div className="mb-1 grid w-full grid-cols-1 items-center gap-2 md:grid-cols-2">
         {/* Title, smaller on mobile */}
         <h1 className="m-0 truncate text-left text-lg font-semibold md:text-xl">{share.description}</h1>
-        {/* Desktop: Clone app in Chef with Chef icon, mobile: What's Chef? */}
+        {/* Desktop: Clone app in Funding Machine with icon, mobile: What's Funding Machine? */}
         <div className="flex justify-end md:justify-end">
           <Button
             href={
@@ -155,12 +155,12 @@ const ShowInner: FC<ShowInnerProps> = ({ share, className }) => {
             tip={
               typeof window !== 'undefined' && window.innerWidth < 768
                 ? undefined
-                : `New users: clone this app and get 85,000 bonus Chef tokens, plus some for the author of this app!
+                : `New users: clone this app and get 85,000 bonus Funding Machine tokens, plus some for the author of this app!
 ` /* TODO this is buggy */
             }
           >
-            <span className="hidden md:inline">Clone app in Chef</span>
-            <span className="inline md:hidden">What&apos;s Chef?</span>
+            <span className="hidden md:inline">Clone app in Funding Machine</span>
+            <span className="inline md:hidden">What&apos;s Funding Machine?</span>
           </Button>
         </div>
       </div>

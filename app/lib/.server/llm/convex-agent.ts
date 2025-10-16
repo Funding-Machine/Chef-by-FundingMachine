@@ -36,6 +36,7 @@ import { lookupDocsTool } from 'chef-agent/tools/lookupDocs';
 import { addEnvironmentVariablesTool } from 'chef-agent/tools/addEnvironmentVariables';
 import { getConvexDeploymentNameTool } from 'chef-agent/tools/getConvexDeploymentName';
 import type { PromptCharacterCounts } from 'chef-agent/ChatContextManager';
+import { loadMCPTools } from '~/lib/.server/mcp/mcpLoader';
 
 type Messages = Message[];
 
@@ -55,6 +56,16 @@ export async function convexAgent(args: {
   recordRawPromptsForDebugging: boolean;
   collapsedMessages: boolean;
   promptCharacterCounts?: PromptCharacterCounts;
+  mcpServers?: Array<{
+    name: string;
+    description?: string;
+    transport: 'stdio' | 'http';
+    command?: string;
+    args?: string[];
+    env?: Record<string, string>;
+    url?: string;
+    headers?: Record<string, string>;
+  }>;
   featureFlags: {
     enableResend: boolean;
   };
@@ -72,6 +83,7 @@ export async function convexAgent(args: {
     recordRawPromptsForDebugging,
     collapsedMessages,
     promptCharacterCounts,
+    mcpServers,
     featureFlags,
   } = args;
   console.debug('Starting agent with model provider', modelProvider);
@@ -91,6 +103,7 @@ export async function convexAgent(args: {
     usingGoogle: modelProvider == 'Google',
     resendProxyEnabled: getEnv('RESEND_PROXY_ENABLED') == '1',
     enableResend: featureFlags.enableResend,
+    hasMcpServers: mcpServers && mcpServers.length > 0,
   };
   const tools: ConvexToolSet = {
     deploy: deployTool,
@@ -101,6 +114,18 @@ export async function convexAgent(args: {
   tools.addEnvironmentVariables = addEnvironmentVariablesTool();
   tools.view = viewTool;
   tools.edit = editTool;
+
+  // Load MCP tools if available
+  if (mcpServers && mcpServers.length > 0) {
+    try {
+      const mcpTools = await loadMCPTools(mcpServers);
+      Object.assign(tools, mcpTools);
+      console.log(`Loaded ${Object.keys(mcpTools).length} MCP tools from ${mcpServers.length} server(s)`);
+    } catch (error) {
+      console.error('Failed to load MCP tools:', error);
+      // Continue without MCP tools rather than failing the whole request
+    }
+  }
 
   const messagesForDataStream: CoreMessage[] = [
     {
